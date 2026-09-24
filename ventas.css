@@ -1,35 +1,184 @@
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
 body {
-    font-family: Arial;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
     background-color: #0f172a;
     color: white;
+
+    /* Centrado sin cortar el contenido en pantallas bajas */
+    min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    padding: 16px;
 }
 
+/* ---------- Tarjeta principal ---------- */
 .contenedor {
     background-color: #1e293b;
-    padding: 20px;
-    border-radius: 10px;
-    width: 300px;
+    width: 100%;
+    max-width: 440px;
+    padding: 24px 20px;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+h1 {
+    margin: 0 0 20px;
+    font-size: clamp(1.4rem, 5.5vw, 1.9rem);
+    line-height: 1.2;
+}
+
+h2 {
+    margin: 28px 0 12px;
+    padding-top: 20px;
+    border-top: 1px solid #334155;
+    font-size: clamp(1.15rem, 4.5vw, 1.4rem);
+    line-height: 1.2;
+}
+
+/* ---------- Formulario ---------- */
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.95rem;
+    color: #cbd5e1;
 }
 
 input {
+    display: block;
     width: 100%;
-    margin-bottom: 10px;
-    padding: 5px;
+    margin-bottom: 16px;
+    padding: 12px 14px;
+    min-height: 48px;
+    font-size: 1rem; /* 16px evita el zoom automático en iPhone */
+    font-family: inherit;
+    color: white;
+    background-color: #0f172a;
+    border: 1px solid #475569;
+    border-radius: 8px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #22c55e;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.3);
 }
 
 button {
+    display: block;
     width: 100%;
-    padding: 10px;
+    min-height: 50px;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: inherit;
     background-color: #22c55e;
     border: none;
+    border-radius: 8px;
     color: white;
     cursor: pointer;
+    transition: background-color 0.2s;
 }
 
 button:hover {
     background-color: #16a34a;
+}
+
+button:focus-visible {
+    outline: 3px solid #bbf7d0;
+    outline-offset: 2px;
+}
+
+button:active {
+    transform: scale(0.99);
+}
+
+/* ---------- Resultados ---------- */
+.contenedor p {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin: 0;
+    padding: 10px 0;
+    border-bottom: 1px solid #334155;
+    font-size: 1rem;
+    color: #cbd5e1;
+}
+
+.contenedor p:last-child {
+    border-bottom: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white;
+}
+
+.contenedor p span {
+    font-weight: bold;
+    color: white;
+    text-align: right;
+    overflow-wrap: anywhere; /* números largos no desbordan */
+}
+
+/* ---------- Celulares muy pequeños ---------- */
+@media (max-width: 360px) {
+    body {
+        padding: 10px;
+    }
+
+    .contenedor {
+        padding: 18px 14px;
+    }
+}
+
+/* ---------- Tablets ---------- */
+@media (min-width: 600px) {
+    body {
+        padding: 32px;
+    }
+
+    .contenedor {
+        max-width: 520px;
+        padding: 36px 32px;
+    }
+
+    h1 {
+        margin-bottom: 28px;
+    }
+
+    label {
+        font-size: 1rem;
+    }
+
+    input {
+        margin-bottom: 20px;
+    }
+}
+
+/* ---------- Pantallas grandes / tablets grandes ---------- */
+@media (min-width: 900px) {
+    .contenedor {
+        max-width: 560px;
+    }
+}
+
+/* ---------- Celular en horizontal (poca altura) ---------- */
+@media (max-height: 500px) and (orientation: landscape) {
+    body {
+        align-items: flex-start;
+    }
 }

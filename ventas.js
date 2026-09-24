@@ -10,25 +10,15 @@ function calcularComision(numeroVentas, precioProducto) {
 }
 
 function calcular() {
-  let cmpSueldoBase = document.getElementById("txtSueldoBase");
-  let cmpVenta = document.getElementById("txtVentas");
-  let cmpPrecio = document.getElementById("txtPrecio");
-  let sueldoBaseStr = cmpSueldoBase.value;
-  let ventaStr = cmpVenta.value;
-  let precioStr = cmpPrecio.value;
-
-  let sueldoBase = parseFloat(sueldoBaseStr);
-  let ventas = parseFloat(ventaStr);
-  let precio = parseFloat(precioStr);
+  let sueldoBase = recuperarFloat("txtSueldoBase");
+  let ventas = recuperarFloat("txtVentas");
+  let precio = recuperarFloat("txtPrecio");
 
   let comision = calcularComision(ventas, precio);
 
   let total = sueldoBase + comision;
 
-  let spSueldoBase = document.getElementById("spSueldoBase");
-  let spComision = document.getElementById("spComision");
-  let cmpTotal = document.getElementById("spTotal");
-  spSueldoBase.textContent = sueldoBase;
-  spComision.textContent = comision;
-  cmpTotal.textContent = total;
+  recuperarMostarEnSpan("spSueldoBase", sueldoBase);
+  recuperarMostarEnSpan("spComision", comision);
+  recuperarMostarEnSpan("spTotal", total);
 }
